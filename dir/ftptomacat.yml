@@ -1,0 +1,15 @@
+---
+- host: all
+  become: yes
+  tasks:
+    - name: Downloading tomcat server from Apache-tomcat server
+      get_url:
+        url: https://mirror.kiu.ac.ug/apache/tomcat/tomcat-9/v9.0.45/bin/apache-tomcat-9.0.45.tar.gz
+        dest: /usr/local
+    - name: extract the tomcat server
+      unarchive:
+       src: /usr/local/apache-tomcat-9.0.45.tar.gz
+       dest: /usr/local
+       remote_src: yes
+    - name: start tomcat server
+      shell: /usr/local/apache-tomcat-9.0.52/bin/startup.sh
